@@ -21,7 +21,7 @@
             android:src="@mipmap/ic_launcher_round"
             android:layout_centerInParent="true"
             android:layout_above="@+id/components"
-            android:id="@+id/particularimage">
+            android:id="@+id/imagesingle">
 
 
 
@@ -41,7 +41,7 @@
                 android:layout_margin="5dp"
                 android:src="@drawable/chatting"
                 android:layout_weight="1"
-                android:id="@+id/mychatapp">
+                android:id="@+id/file">
 
             </ImageView>
             <ImageView

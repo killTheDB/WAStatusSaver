@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -21,9 +22,9 @@ import java.io.IOException;
 
 public class Video extends AppCompatActivity {
 
-    ImageView download,mychatapp,share;
+    ImageView download,mydir,share;
 
-    VideoView mparticularvideo;
+    VideoView mparvideo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,10 +33,23 @@ public class Video extends AppCompatActivity {
 
         getSupportActionBar().setTitle("Video");
 
-        mparticularvideo=findViewById(R.id.particularvideo);
+        mparvideo=findViewById(R.id.videosingle);
         share=findViewById(R.id.share);
         download=findViewById(R.id.download);
-        mychatapp=findViewById(R.id.mychatapp);
+        mydir=findViewById(R.id.mychatapp);
+
+        mydir.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                String destpathdir= Environment.getExternalStorageDirectory()+"/StatusSaver/";
+                Uri uri = Uri.parse(destpathdir);
+                intent.setDataAndType(uri, "*/*");
+                startActivity(intent);
+
+            }
+        });
+
         share.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -53,12 +67,12 @@ public class Video extends AppCompatActivity {
         File file1=new File(file);
 
         MediaController mediaController=new MediaController(this);
-        mediaController.setAnchorView(mparticularvideo);
+        mediaController.setAnchorView(mparvideo);
         Uri uri1=Uri.parse(uri);
-        mparticularvideo.setMediaController(mediaController);
-        mparticularvideo.setVideoURI(uri1);
-        mparticularvideo.requestFocus();
-        mparticularvideo.start();
+        mparvideo.setMediaController(mediaController);
+        mparvideo.setVideoURI(uri1);
+        mparvideo.requestFocus();
+        mparvideo.start();
    //     Glide.with(getApplicationContext()).load(uri).into(mparticularimage);
 
         download.setOnClickListener(new View.OnClickListener() {
@@ -93,7 +107,7 @@ public class Video extends AppCompatActivity {
                 button.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-
+                        dialog.dismiss();
                     }
                 });
 

@@ -55,10 +55,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-
-
-
-
     }
 
     private void setuplayout() {
@@ -70,15 +66,6 @@ public class MainActivity extends AppCompatActivity {
         adapter=new Adapter(MainActivity.this,getData());
         recyclerView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
-
-
-
-
-
-
-
-
-
     }
 
     private ArrayList<ModelClass> getData() {
@@ -99,14 +86,7 @@ public class MainActivity extends AppCompatActivity {
                 fileslist.add(f);
             }
         }
-
         return fileslist;
-
-
-
-
-
-
     }
 
     private void checkPermission() {
@@ -123,17 +103,11 @@ public class MainActivity extends AppCompatActivity {
             {
                 ActivityCompat.requestPermissions(MainActivity.this,new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},requestCode);
             }
-
-
-
         }
         else
         {
             Toast.makeText(getApplicationContext(),"Already",Toast.LENGTH_SHORT).show();
             setuplayout();
         }
-
-
-
     }
 }

@@ -58,7 +58,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
                 if(modelClass.getUri().toString().endsWith(".mp4"))
                 {
                     final String path=fileslist.get(position).getPath();
-                    String destpath= Environment.getExternalStorageDirectory().getAbsolutePath()+Constant.SAVE_FOLDER_NAME;
+                    String destpath= Environment.getExternalStorageDirectory().getAbsolutePath()+"/WhatsApp/";
                     Intent intent=new Intent(context,Video.class);
                     intent.putExtra("DEST_PATH_VIDEO",destpath);
                     intent.putExtra("FILE_VIDEO",path);
@@ -70,37 +70,17 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
                 }
                 else
                 {
-
-
                     final String path=fileslist.get(position).getPath();
-                    String destpath= Environment.getExternalStorageDirectory().getAbsolutePath()+Constant.SAVE_FOLDER_NAME;
+                    String destpath= Environment.getExternalStorageDirectory().getAbsolutePath()+"/StatusSaver/";
                     Intent intent=new Intent(context,Picture.class);
                     intent.putExtra("DEST_PATH",destpath);
                     intent.putExtra("FILE",path);
                     intent.putExtra("FILENAME",modelClass.getFilename());
                     intent.putExtra("URI",modelClass.getUri().toString());
                     context.startActivity(intent);
-
-
-
-
-
                 }
             }
         });
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
 
     @Override
@@ -116,7 +96,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
 
         public ViewHolder(@NonNull  View itemView) {
             super(itemView);
-            mainstatus=itemView.findViewById(R.id.thumbnailofstatus);
+            mainstatus=itemView.findViewById(R.id.thumbnail);
             play=itemView.findViewById(R.id.play);
 
 

@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -19,17 +20,30 @@ import java.io.File;
 import java.io.IOException;
 
 public class Picture extends AppCompatActivity {
-    ImageView mparticularimage,download,mychatapp,share;
+    ImageView mparimage,download,mydir,share;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_picture);
-        getSupportActionBar().setTitle("Picture");
-        mparticularimage=findViewById(R.id.particularimage);
+        getSupportActionBar().setTitle("Image");
+        mparimage=findViewById(R.id.imagesingle);
         share=findViewById(R.id.share);
         download=findViewById(R.id.download);
-        mychatapp=findViewById(R.id.mychatapp);
+        mydir=findViewById(R.id.file);
+
+        mydir.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                String destpathdir=Environment.getExternalStorageDirectory()+Constant.SAVE_FOLDER_NAME;
+                Uri uri = Uri.parse(destpathdir);
+                intent.setDataAndType(uri, "*/*");
+                startActivity(intent);
+
+            }
+        });
+
         share.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -46,7 +60,7 @@ public class Picture extends AppCompatActivity {
         File destpath2=new File(destpath);
         File file1=new File(file);
 
-        Glide.with(getApplicationContext()).load(uri).into(mparticularimage);
+        Glide.with(getApplicationContext()).load(uri).into(mparimage);
 
         download.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,31 +90,15 @@ public class Picture extends AppCompatActivity {
                 Dialog dialog=new Dialog(Picture.this);
                 dialog.setContentView(R.layout.custom_dialog);
                 dialog.show();
-                Button button=dialog.findViewById(R.id.okbutton);
+                Button button=dialog.findViewById(R.id.okbtn);
                 button.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-
+                        dialog.dismiss();
                     }
                 });
 
             }
         });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
 }
